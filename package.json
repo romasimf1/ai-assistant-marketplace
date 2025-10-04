@@ -1,0 +1,10 @@
+{
+  "name": "auth-test",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "node test-auth.js"
+  },
+  "dependencies": {
+    "node-fetch": "^2.7.0"
+  }
+}

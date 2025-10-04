@@ -1,0 +1,30 @@
+# Database
+DATABASE_URL="postgresql://postgres:postgres123@postgres:5432/ai_assistant_marketplace?schema=public"
+
+# JWT
+JWT_SECRET="your-super-secret-jwt-key-change-in-production"
+JWT_EXPIRES_IN="15m"
+JWT_REFRESH_SECRET="your-super-secret-refresh-key-change-in-production"
+JWT_REFRESH_EXPIRES_IN="7d"
+
+# Server
+PORT=3001
+NODE_ENV="development"
+
+# ElevenLabs API (placeholders - replace with real keys)
+ELEVENLABS_API_KEY="your-elevenlabs-api-key"
+ELEVENLABS_BASE_URL="https://api.elevenlabs.io"
+
+# OpenAI API (placeholder - replace with real key)
+OPENAI_API_KEY="your-openai-api-key"
+
+# Stripe (placeholders - replace with real keys)
+STRIPE_SECRET_KEY="sk_test_your-stripe-secret-key"
+STRIPE_WEBHOOK_SECRET="whsec_your-webhook-secret"
+
+# Rate Limiting
+RATE_LIMIT_WINDOW_MS=900000
+RATE_LIMIT_MAX_REQUESTS=100
+
+# CORS
+CORS_ORIGIN="http://localhost:3000"

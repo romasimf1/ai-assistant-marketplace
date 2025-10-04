@@ -1,0 +1,248 @@
+# AI Assistant Marketplace - Development Rules
+
+## Core Principles
+- **TypeScript Only**: All code must be written in TypeScript (frontend and backend)
+- **Security First**: Prioritize security and scalability in all architectural decisions
+- **Modular Architecture**: Each assistant is an independent module
+- **Philadelphia Focus**: All features should consider Philadelphia market needs
+
+## Code Quality Standards
+
+### TypeScript Configuration
+- **Strict Mode**: Always enabled (`"strict": true` in tsconfig.json)
+- **No Any Types**: Never use `any` type - use proper typing or `unknown`
+- **Interface over Type**: Prefer interfaces for object shapes, types for unions
+- **Generic Constraints**: Use constrained generics where appropriate
+- **Type Guards**: Implement proper type guards for runtime type checking
+
+### Linting and Formatting
+- **ESLint**: Mandatory with TypeScript and React rules enabled
+- **Prettier**: Required for consistent code formatting
+- **Husky**: Pre-commit hooks for linting and formatting checks
+- **Lint-staged**: Only lint changed files in pre-commit hooks
+
+### Testing Requirements
+- **Framework**: Vitest for all testing needs
+- **Coverage**: Minimum 80% code coverage required
+- **Test Types**: Unit tests, integration tests, and E2E tests
+- **Mocking**: Use Vitest mocking for external dependencies
+- **Test Structure**: Tests should mirror source code structure
+
+## Project Structure
+
+### Frontend Structure
+```
+src/
+├── components/          # Reusable UI components
+│   ├── ui/             # shadcn/ui components only
+│   └── assistants/     # Assistant-specific components
+├── pages/              # Next.js pages
+├── lib/                # Utilities and configurations
+├── hooks/              # Custom React hooks
+├── types/              # TypeScript type definitions
+└── styles/             # Global styles (Tailwind only)
+```
+
+### Backend Structure
+```
+backend/
+├── src/
+│   ├── controllers/    # Route handlers
+│   ├── models/         # Database models (Prisma)
+│   ├── services/       # Business logic
+│   ├── middleware/     # Express middleware
+│   ├── routes/         # API route definitions
+│   ├── types/          # TypeScript definitions
+│   └── utils/          # Helper functions
+├── tests/              # Test files
+└── docs/               # API documentation
+```
+
+### Assistant Modules
+```
+assistants/
+├── [assistant-name]/
+│   ├── frontend/       # Next.js components for this assistant
+│   ├── backend/        # Express routes and services
+│   ├── config/         # Assistant-specific configuration
+│   ├── tests/          # Assistant-specific tests
+│   └── README.md       # Assistant documentation
+```
+
+## UI/UX Guidelines
+
+### Component Library
+- **shadcn/ui Only**: All UI components must come from shadcn/ui
+- **Tailwind CSS**: Utility-first styling approach only
+- **No Inline Styles**: Never use style attributes or CSS-in-JS
+- **Design System**: Follow established design tokens and patterns
+
+### Accessibility
+- **WCAG 2.1 AA**: Minimum accessibility standard
+- **Semantic HTML**: Proper semantic markup
+- **Keyboard Navigation**: Full keyboard accessibility
+- **Screen Readers**: ARIA labels and descriptions where needed
+
+### Responsive Design
+- **Mobile First**: Design for mobile, enhance for larger screens
+- **Philadelphia Context**: Consider local usage patterns and devices
+- **Performance**: Optimize for slow connections and older devices
+
+## API Development Standards
+
+### RESTful Design
+- **OpenAPI 3.0**: All endpoints documented in `docs/api.md`
+- **Versioning**: API versioning in URL paths (/v1/, /v2/)
+- **HTTP Status Codes**: Proper status codes and error responses
+- **Content Negotiation**: Support JSON primarily, with appropriate content types
+
+### Security Requirements
+- **Input Validation**: Zod/Joi schemas for all inputs
+- **Rate Limiting**: Implemented at API gateway level
+- **CORS**: Properly configured CORS policies
+- **Helmet**: Security headers middleware required
+
+### Error Handling
+- **Structured Errors**: Consistent error response format
+- **Logging**: Comprehensive error logging with context
+- **User-Friendly Messages**: Safe error messages for users
+- **Monitoring**: Error tracking and alerting setup
+
+## Database and Data Management
+
+### Schema Design
+- **Normalization**: Proper database normalization (3NF minimum)
+- **Indexing**: Strategic indexing for query performance
+- **Constraints**: Foreign keys, check constraints, and validations
+- **Migrations**: Version-controlled schema changes
+
+### Data Access
+- **Prisma ORM**: Type-safe database queries only
+- **Connection Pooling**: Proper connection management
+- **Query Optimization**: Efficient queries with proper joins
+- **Caching Strategy**: Redis caching for frequently accessed data
+
+## Git and Version Control
+
+### Commit Conventions
+- **Conventional Commits**: Mandatory format
+  - `feat:` - New features
+  - `fix:` - Bug fixes
+  - `docs:` - Documentation changes
+  - `style:` - Code style changes
+  - `refactor:` - Code refactoring
+  - `test:` - Test additions/modifications
+  - `chore:` - Maintenance tasks
+
+### Branching Strategy
+- **main**: Production-ready code
+- **develop**: Integration branch for features
+- **feature/**: Feature branches (feature/description)
+- **hotfix/**: Critical bug fixes (hotfix/description)
+- **release/**: Release preparation branches
+
+### Pull Request Requirements
+- **Code Review**: Mandatory peer review for all PRs
+- **Tests**: All tests passing, coverage maintained
+- **Linting**: No linting errors or warnings
+- **Documentation**: Updated documentation for changes
+
+## Performance Standards
+
+### Frontend Performance
+- **Core Web Vitals**: Meet Google's performance metrics
+- **Bundle Size**: Monitor and optimize bundle sizes
+- **Lazy Loading**: Code splitting and lazy loading implemented
+- **Image Optimization**: Proper image formats and loading strategies
+
+### Backend Performance
+- **Response Times**: API responses under 200ms for simple queries
+- **Database Queries**: Optimized queries, proper indexing
+- **Caching**: Effective caching strategies implemented
+- **Scalability**: Horizontal scaling capability designed in
+
+## Deployment and DevOps
+
+### Local Development
+- **Frontend**: `npm run dev` in `frontend/` directory (runs on http://localhost:3000)
+- **Backend**: `npm run dev` in `backend/` directory (runs on http://localhost:3001)
+- **Health Check**: Available at http://localhost:3001/health
+
+### Docker Deployment
+- **Docker Compose**: Full stack deployment with PostgreSQL database
+- **Services**: Frontend (port 3000), Backend (port 3001), PostgreSQL (port 5432)
+- **Command**: `docker-compose up --build` from project root
+- **Environment**: Development mode with hot reloading enabled
+
+### Environment Management
+- **Environment Variables**: Secure secret management
+- **Configuration**: Environment-specific configurations
+- **Secrets**: Never commit secrets to version control
+- **Documentation**: Environment setup documentation
+
+### CI/CD Pipeline
+- **Automated Testing**: Full test suite runs on every PR
+- **Security Scanning**: Automated security vulnerability checks
+- **Performance Monitoring**: Automated performance regression testing
+- **Deployment Automation**: Zero-downtime deployment processes
+
+## Security Best Practices
+
+### Code Security
+- **Dependency Scanning**: Regular security audits of dependencies
+- **Input Sanitization**: All user inputs sanitized and validated
+- **Authentication**: Secure authentication mechanisms
+- **Authorization**: Proper role-based access control
+
+### Infrastructure Security
+- **Network Security**: Proper firewall and network configurations
+- **Data Encryption**: Encryption at rest and in transit
+- **Access Control**: Least privilege access principles
+- **Monitoring**: Security event monitoring and alerting
+
+## Documentation Requirements
+
+### Code Documentation
+- **JSDoc**: Comprehensive JSDoc comments for public APIs
+- **README Files**: Detailed README for each assistant module
+- **Architecture Docs**: Updated architecture documentation
+- **API Docs**: OpenAPI specification in `docs/api.md`
+
+### Process Documentation
+- **Onboarding**: Developer onboarding documentation
+- **Deployment**: Deployment and maintenance procedures
+- **Incident Response**: Security incident response procedures
+- **Business Continuity**: Disaster recovery documentation
+
+## Compliance and Legal
+
+### Data Protection
+- **GDPR/CCPA**: Compliance with data protection regulations
+- **Data Minimization**: Collect only necessary user data
+- **User Consent**: Proper consent management for data collection
+- **Data Retention**: Defined data retention policies
+
+### Philadelphia-Specific Requirements
+- **Local Laws**: Compliance with Pennsylvania business regulations
+- **Tax Compliance**: Proper sales tax collection and remittance
+- **Community Standards**: Alignment with Philadelphia community values
+- **Local Partnerships**: Documentation of local business partnerships
+
+---
+
+## Enforcement
+These rules are enforced through:
+- Pre-commit hooks (linting, formatting, testing)
+- CI/CD pipeline checks
+- Code review requirements
+- Regular audit and compliance reviews
+
+Violations of these rules may result in:
+- Failed CI/CD builds
+- Required code rewrites
+- Escalation to technical leadership
+- In severe cases, removal from active development
+
+*These rules ensure the AI Assistant Marketplace maintains high code quality, security, and scalability standards while serving the Philadelphia community effectively.*
+
+

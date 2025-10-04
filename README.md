@@ -1,447 +1,267 @@
-# 🤖 AI Assistant Marketplace - Philadelphia
+# 🤖 AI Assistant Marketplace - Philadelphia, PA
 
-**Полнофункциональная платформа для AI-ассистентов в Филадельфии с поддержкой голосовых взаимодействий**
+[![CI/CD Pipeline](https://github.com/romasimf1/ai-assistant-marketplace/actions/workflows/ci.yml/badge.svg)](https://github.com/romasimf1/ai-assistant-marketplace/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-[![Next.js](https://img.shields.io/badge/Next.js-15-black)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)](https://www.typescriptlang.org/)
-[![Prisma](https://img.shields.io/badge/Prisma-ORM-green)](https://prisma.io/)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-blue)](https://postgresql.org/)
-[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4-cyan)](https://tailwindcss.com/)
+> Полнофункциональная платформа маркетплейса ИИ-ассистентов для жителей Филадельфии
 
-## 📋 Оглавление
+## 🌟 О проекте
 
-- [🚀 Быстрый запуск](#-быстрый-запуск)
-- [🎯 Что реализовано](#-что-реализовано)
-- [📁 Структура проекта](#-структура-проекта)
-- [🔧 Технический стек](#-технический-стек)
-- [🔑 Аутентификация](#-аутентификация)
-- [🗄️ База данных](#️-база-данных)
-- [🌐 API Endpoints](#-api-endpoints)
-- [🎨 UI Компоненты](#-ui-компоненты)
-- [🧪 Тестирование](#-тестирование)
-- [🚀 Развертывание](#-развертывание)
-- [📋 Что еще нужно сделать](#-что-ещё-нужно-сделать)
-- [🤝 Поддержка](#-поддержка)
+AI Assistant Marketplace - это современная full-stack платформа, соединяющая жителей Филадельфии с специализированными ИИ-ассистентами для повседневных задач. Платформа включает аутентификацию, управление заказами, систему отзывов и интеграцию с внешними AI сервисами.
 
----
+## 🚀 Возможности
 
-## 🚀 Быстрый запуск
+### 👤 Пользовательские возможности
+- **Регистрация и аутентификация** с JWT токенами
+- **Личный кабинет** с историей заказов
+- **Система отзывов** и рейтингов
+- **Безопасные платежи** через Stripe
+- **Поддержка локализации** для Филадельфии
 
-### Через Docker (рекомендуется)
-```bash
-# Клонирование репозитория
-git clone <repository-url>
-cd ai-assistant-marketplace
+### 🤖 AI Ассистенты
+- **Каталог ассистентов** с фильтрацией и поиском
+- **Демо-режим** для тестирования
+- **Специализация** по категориям (еда, транспорт, здоровье)
+- **Голосовые интерфейсы** с ElevenLabs
+- **Интеграция** с OpenAI и другими AI сервисами
 
-# Запуск всех сервисов
-docker-compose up --build
+### 💼 Управление заказами
+- **Создание заказов** с гибкой конфигурацией
+- **Отслеживание статуса** в реальном времени
+- **История транзакций** и платежей
+- **Автоматические уведомления**
 
-# Или в фоне
-docker-compose up --build -d
-```
+## 🛠️ Технический стек
 
-### Локально (для разработки)
-```bash
-# Backend
-cd backend
-npm install
-npm run prisma:generate
-npm run dev
+### Backend
+- **Runtime:** Node.js 18 LTS
+- **Framework:** Express.js 5
+- **Language:** TypeScript (strict mode)
+- **Database:** PostgreSQL + Prisma ORM
+- **Authentication:** JWT с refresh tokens
+- **Security:** Helmet, CORS, Rate Limiting
+- **Validation:** Joi schemas
+- **Testing:** Vitest + Coverage
 
-# Frontend (в новом терминале)
-cd ../frontend
-npm install
-npm run dev
-```
+### Frontend
+- **Framework:** Next.js 15 (App Router)
+- **Language:** TypeScript
+- **UI:** Tailwind CSS + shadcn/ui
+- **State Management:** Zustand
+- **Forms:** React Hook Form + Zod
+- **HTTP Client:** Fetch API с custom hooks
 
-## 📍 URLs
-
-- **🏠 Главная страница**: http://localhost:3000
-- **🏪 Маркетплейс**: http://localhost:3000/marketplace
-- **🔐 Аутентификация**: http://localhost:3000/auth
-- **🔧 Backend API**: http://localhost:3001
-- **💚 Health Check**: http://localhost:3001/health
-
----
-
-## 🎯 Что реализовано ✅
-
-### 🔐 Полная система аутентификации
-- ✅ Регистрация пользователей с валидацией
-- ✅ Вход в систему с JWT токенами
-- ✅ Refresh tokens для безопасности
-- ✅ Защищенные маршруты
-- ✅ Профиль пользователя
-- ✅ Выход из системы
-
-### 🎨 Современный UI/UX
-- ✅ Адаптивный дизайн (Next.js 15 + React 19)
-- ✅ shadcn/ui компоненты
-- ✅ Tailwind CSS стилизация
-- ✅ Темная/светлая тема
-- ✅ Анимации и переходы
-
-### 🗄️ База данных
-- ✅ PostgreSQL с Prisma ORM
-- ✅ Миграции и схема БД
-- ✅ Type-safe запросы
-- ✅ Отношения между таблицами
-
-### 🔧 Backend API
-- ✅ RESTful API с Express.js
-- ✅ TypeScript типизация
-- ✅ Middleware аутентификации
-- ✅ Валидация данных (Joi)
-- ✅ CORS конфигурация
-
-### 🎪 Фронтенд функции
-- ✅ Клиент-серверная архитектура
-- ✅ State management (Zustand)
-- ✅ API интеграция
-- ✅ Обработка ошибок
-- ✅ Условный рендеринг UI
-
-### 📱 Адаптивность
-- ✅ Mobile-first дизайн
-- ✅ Responsive компоненты
-- ✅ Cross-browser совместимость
-
----
+### DevOps & Tools
+- **Containerization:** Docker + Docker Compose
+- **CI/CD:** GitHub Actions
+- **Code Quality:** ESLint + Prettier
+- **Version Control:** Git
+- **API Documentation:** OpenAPI 3.0
 
 ## 📁 Структура проекта
 
 ```
 ai-assistant-marketplace/
-├── backend/                          # 🟢 Node.js/Express API
+├── backend/                 # Backend API
 │   ├── src/
-│   │   ├── controllers/              # 🎯 Обработчики маршрутов
-│   │   ├── middleware/               # 🛡️  Middleware (auth, cors, etc.)
-│   │   ├── routes/                   # 🛣️  API маршруты
-│   │   ├── services/                 # ⚙️  Бизнес-логика
-│   │   ├── types/                    # 📝 TypeScript типы
-│   │   └── utils/                    # 🛠️  Утилиты (config, database)
-│   ├── prisma/                       # 🗄️  Схема БД и миграции
-│   ├── tests/                        # 🧪 Тесты
-│   └── Dockerfile                    # 🐳 Docker конфигурация
-├── frontend/                         # 🔵 Next.js приложение
+│   │   ├── middleware/      # Express middleware
+│   │   ├── routes/          # API endpoints
+│   │   ├── services/        # Business logic
+│   │   ├── types/           # TypeScript types
+│   │   └── utils/           # Helper functions
+│   ├── prisma/              # Database schema
+│   ├── tests/               # Backend tests
+│   └── docs/                # API documentation
+├── frontend/                # Next.js application
 │   ├── src/
-│   │   ├── app/                      # 📱 Next.js 13+ app router
-│   │   │   ├── auth/                 # 🔐 Страница аутентификации
-│   │   │   ├── marketplace/          # 🏪 Страница маркетплейса
-│   │   │   └── page.tsx              # 🏠 Главная страница
-│   │   ├── components/               # 🧩 React компоненты
-│   │   │   ├── auth/                 # 🔐 Компоненты аутентификации
-│   │   │   └── ui/                   # 🎨 UI компоненты (shadcn/ui)
-│   │   ├── hooks/                    # 🎣 Custom hooks
-│   │   ├── lib/                      # 📚 Утилиты и store
-│   │   └── types/                    # 📝 TypeScript типы
-│   └── Dockerfile                    # 🐳 Docker конфигурация
-├── docker-compose.yml                # 🐳 Docker Compose
-└── README.md                         # 📖 Документация
+│   │   ├── app/             # App router pages
+│   │   ├── components/      # React components
+│   │   ├── hooks/           # Custom hooks
+│   │   └── lib/             # Utilities & stores
+│   └── public/              # Static assets
+├── .github/                 # GitHub configuration
+│   ├── workflows/           # CI/CD pipelines
+│   └── dependabot.yml       # Dependency updates
+└── docker-compose.yml       # Local development setup
 ```
 
----
+## 🚀 Быстрый старт
 
-## 🔧 Технический стек
+### Предварительные требования
+- Node.js 18+
+- PostgreSQL 15+
+- Git
+- Docker (опционально)
 
-### Backend
-- **Runtime**: Node.js 18+
-- **Framework**: Express.js
-- **Language**: TypeScript 5
-- **Database**: PostgreSQL 15 + Prisma ORM
-- **Auth**: JWT tokens + bcrypt
-- **Validation**: Joi schemas
-- **Security**: Helmet, CORS, Rate limiting
+### Локальная установка
 
-### Frontend
-- **Framework**: Next.js 15 (App Router)
-- **Runtime**: React 19
-- **Language**: TypeScript 5
-- **Styling**: Tailwind CSS 4
-- **UI**: shadcn/ui components
-- **State**: Zustand store
-- **Icons**: Lucide React
+1. **Клонируйте репозиторий**
+   ```bash
+   git clone https://github.com/romasimf1/ai-assistant-marketplace.git
+   cd ai-assistant-marketplace
+   ```
 
-### DevOps
-- **Container**: Docker & Docker Compose
-- **Database**: PostgreSQL (production) / SQLite (dev)
-- **Linting**: ESLint
-- **Formatting**: Prettier
+2. **Запуск с Docker (рекомендуется)**
+   ```bash
+   docker-compose up --build
+   ```
 
----
+3. **Ручная установка**
 
-## 🔑 Аутентификация
+   **Backend:**
+   ```bash
+   cd backend
+   npm install
+   cp env-example.txt .env
+   # Отредактируйте .env файл
+   npm run prisma:generate
+   npm run prisma:push
+   npm run dev
+   ```
 
-### Регистрация пользователя
-```typescript
-POST /api/v1/auth/register
-{
-  "email": "user@example.com",
-  "password": "securepass123",
-  "firstName": "John",
-  "lastName": "Doe",
-  "phone": "+1234567890"
-}
-```
+   **Frontend:**
+   ```bash
+   cd frontend
+   npm install
+   npm run dev
+   ```
 
-### Вход в систему
-```typescript
-POST /api/v1/auth/login
-{
-  "email": "user@example.com",
-  "password": "securepass123"
-}
-```
+### Доступ к приложению
+- **Frontend:** http://localhost:3000
+- **Backend API:** http://localhost:3001
+- **Health Check:** http://localhost:3001/health
+- **API Docs:** http://localhost:3001/api/docs
 
-### Получение профиля
-```typescript
-GET /api/v1/auth/profile
-Authorization: Bearer <access_token>
-```
+## 🔧 Конфигурация
 
----
+### Environment Variables
 
-## 🗄️ База данных
+Создайте `.env` файлы в папках `backend/` и `frontend/`:
 
-### Схема данных
-```prisma
-model User {
-  id              String   @id @default(cuid())
-  email           String   @unique
-  passwordHash    String
-  firstName       String?
-  lastName        String?
-  phone           String?
-  address         Json?
-  preferences     Json?
-  subscriptionTier String  @default("free")
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-
-  orders          Order[]
-  transactions    Transaction[]
-  reviews         Review[]
-}
-
-model Assistant {
-  id              String   @id @default(cuid())
-  name            String
-  slug            String   @unique
-  description     String
-  category        String
-  voiceConfig     Json
-  aiModel         String   @default("gpt-4")
-  pricing         Json
-  isActive        Boolean  @default(true)
-  demoAvailable   Boolean  @default(true)
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-
-  orders          Order[]
-  reviews         Review[]
-}
-```
-
-### Работа с БД
 ```bash
-# Генерация Prisma клиента
-cd backend && npm run prisma:generate
+# Backend .env
+DATABASE_URL="postgresql://user:pass@localhost:5432/ai_marketplace"
+JWT_SECRET="your-jwt-secret"
+JWT_REFRESH_SECRET="your-refresh-secret"
+ELEVENLABS_API_KEY="your-elevenlabs-key"
+OPENAI_API_KEY="your-openai-key"
+STRIPE_SECRET_KEY="your-stripe-key"
 
-# Применение миграций
-npm run prisma:push
-
-# Просмотр БД в браузере
-npm run prisma:studio
+# Frontend .env.local
+NEXT_PUBLIC_API_URL="http://localhost:3001/api/v1"
 ```
-
----
-
-## 🌐 API Endpoints
-
-### Аутентификация
-- `POST /api/v1/auth/register` - Регистрация пользователя
-- `POST /api/v1/auth/login` - Вход в систему
-- `POST /api/v1/auth/refresh` - Обновление токена
-- `GET /api/v1/auth/profile` - Получение профиля
-- `POST /api/v1/auth/logout` - Выход из системы
-
-### Пользователи
-- `GET /api/v1/users/stats` - Статистика пользователя
-- `GET /api/v1/users/orders` - Заказы пользователя
-- `GET /api/v1/users/reviews` - Отзывы пользователя
-
-### Ассистенты
-- `GET /api/v1/assistants` - Список ассистентов
-- `GET /api/v1/assistants/:id` - Детали ассистента
-
-### Заказы
-- `GET /api/v1/orders` - Список заказов
-- `POST /api/v1/orders` - Создание заказа
-
----
-
-## 🎨 UI Компоненты
-
-### Аутентификация
-- `LoginForm` - Форма входа с валидацией
-- `RegisterForm` - Форма регистрации с чекбоксом условий
-- `AuthPage` - Страница аутентификации с переключением режимов
-
-### Навигация
-- Динамическая навигационная панель
-- Аватар пользователя с инициалами
-- Адаптивное меню для мобильных устройств
-
-### UI Библиотека
-- Button, Input, Card, Badge, Avatar
-- Alert, Dialog, Dropdown Menu
-- Form components с валидацией
-
----
 
 ## 🧪 Тестирование
 
 ### Backend тесты
 ```bash
 cd backend
-npm test                    # Запуск всех тестов
-npm run test:coverage      # С покрытием кода
-npm run test:ui            # С интерфейсом
+npm run test              # Запуск всех тестов
+npm run test:coverage     # С покрытием кода
+npm run test:ui          # В интерактивном режиме
 ```
 
 ### Frontend тесты
 ```bash
 cd frontend
-npm run lint               # Проверка кода
-npm run build              # Проверка сборки
+npm run test
 ```
 
-### API тестирование
+## 🚢 Развертывание
+
+### Production deployment
+
+1. **Настройте переменные окружения** в GitHub Secrets
+2. **Включите GitHub Actions** для автоматического развертывания
+3. **Настройте домен** и SSL сертификаты
+
+### Docker deployment
+
 ```bash
-# Регистрация
-curl -X POST http://localhost:3000/api/auth/register \
-  -H "Content-Type: application/json" \
-  -d '{"email":"test@example.com","password":"password123"}'
-
-# Вход
-curl -X POST http://localhost:3000/api/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{"email":"test@example.com","password":"password123"}'
+# Production сборка
+docker-compose -f docker-compose.prod.yml up --build
 ```
 
----
+## 🔒 Безопасность
 
-## 🚀 Развертывание
+### Реализованные меры безопасности
+- **Password Hashing:** bcrypt с 12 раундами
+- **JWT Tokens:** Короткие сроки жизни (15 мин access, 7 дней refresh)
+- **Rate Limiting:** 100 запросов за 15 минут
+- **Input Validation:** Joi schemas и Zod валидация
+- **CORS:** Строгая конфигурация разрешенных origins
+- **Security Headers:** Helmet middleware
+- **SQL Injection Protection:** Prisma ORM
 
-### Production сборка
-```bash
-# Backend
-cd backend
-npm run build
-npm start
+### Рекомендации
+- Регулярно обновляйте зависимости
+- Используйте strong пароли
+- Включайте 2FA для GitHub аккаунта
+- Мониторьте логи на подозрительную активность
 
-# Frontend
-cd ../frontend
-npm run build
-npm start
-```
+## 🤝 Содействие
 
-### Docker развертывание
-```bash
-# Сборка образов
-docker-compose build
+Мы приветствуем вклад в развитие проекта!
 
-# Запуск в фоне
-docker-compose up -d
+### Как внести вклад
+1. Fork репозиторий
+2. Создайте feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit изменения (`git commit -m 'feat: add amazing feature'`)
+4. Push в branch (`git push origin feature/amazing-feature`)
+5. Создайте Pull Request
 
-# Просмотр логов
-docker-compose logs -f
+### Соглашения
+- **Commits:** Conventional Commits
+- **Code Style:** ESLint + Prettier
+- **Tests:** Минимум 80% покрытия
+- **Documentation:** Обновляйте README при изменениях
 
-# Остановка
-docker-compose down
-```
+## 📊 Мониторинг и аналитика
 
-### Environment переменные
-```bash
-# .env файл
-DATABASE_URL="postgresql://user:pass@localhost:5432/db"
-JWT_SECRET="your-secret-key"
-JWT_REFRESH_SECRET="your-refresh-secret"
-NODE_ENV="production"
-```
+### Метрики производительности
+- **API Response Time:** < 200ms для простых запросов
+- **Database Queries:** Оптимизированные запросы
+- **Bundle Size:** Мониторинг размера бандла
+- **Core Web Vitals:** Google метрики производительности
 
----
+### Логирование
+- **Error Logging:** Централизованная обработка ошибок
+- **Request Logging:** Morgan middleware
+- **Database Logging:** Prisma query logging
+- **Security Events:** Аудит логов
 
-## 📋 Что ещё нужно сделать
+## 🗺️ Roadmap
 
-### 🚨 Критично (Priority High)
-- [ ] **Обработка ошибок UI** - Показывать user-friendly сообщения об ошибках
-- [ ] **Loading states** - Индикаторы загрузки для всех асинхронных операций
-- [ ] **Form validation UI** - Визуальная обратная связь при ошибках валидации
+### Краткосрочные цели (3-6 месяцев)
+- [ ] Полная интеграция с ElevenLabs для голоса
+- [ ] Stripe платежи для заказов
+- [ ] Real-time уведомления через WebSockets
+- [ ] Мобильное приложение React Native
 
-### ⚡ Важно (Priority Medium)
-- [ ] **Password reset** - Восстановление пароля через email
-- [ ] **Email verification** - Подтверждение email при регистрации
-- [ ] **User roles** - Система ролей (admin, user, premium)
-- [ ] **File uploads** - Загрузка аватаров пользователей
-- [ ] **Pagination** - Пагинация для списков (заказы, отзывы)
+### Долгосрочные цели (6-12 месяцев)
+- [ ] Multi-region развертывание
+- [ ] GraphQL API наряду с REST
+- [ ] AI-powered рекомендаций ассистентов
+- [ ] Интеграция с Philadelphia government APIs
 
-### 🎨 UI/UX улучшения
-- [ ] **Dashboard** - Личный кабинет пользователя
-- [ ] **Order history** - История заказов с деталями
-- [ ] **Notifications** - Система уведомлений
-- [ ] **Search & filters** - Поиск и фильтрация ассистентов
-- [ ] **Favorites** - Избранные ассистенты
+## 📞 Поддержка
 
-### 🔧 Backend доработки
-- [ ] **Rate limiting** - Ограничение количества запросов
-- [ ] **Caching** - Redis для кэширования данных
-- [ ] **Logging** - Структурированное логирование
-- [ ] **Monitoring** - Метрики и алерты
-- [ ] **API documentation** - Swagger/OpenAPI docs
+- **Issues:** [GitHub Issues](https://github.com/romasimf1/ai-assistant-marketplace/issues)
+- **Discussions:** [GitHub Discussions](https://github.com/romasimf1/ai-assistant-marketplace/discussions)
+- **Email:** support@ai-assistant-marketplace.com
 
-### 🧪 Качество кода
-- [ ] **Unit tests** - Покрытие тестами 80%+
-- [ ] **E2E tests** - Автоматизированные UI тесты
-- [ ] **Performance** - Оптимизация загрузки страниц
-- [ ] **Accessibility** - WCAG 2.1 AA compliance
-- [ ] **SEO optimization** - Meta tags, sitemap
+## 📄 Лицензия
 
-### 🚀 Продакшн
-- [ ] **CI/CD pipeline** - Автоматическое развертывание
-- [ ] **Database migrations** - Безопасные миграции в продакшн
-- [ ] **Backup strategy** - Резервное копирование данных
-- [ ] **Security audit** - Проверка безопасности
-- [ ] **Monitoring setup** - Логирование и метрики
+Этот проект лицензирован под MIT License - см. файл [LICENSE](LICENSE) для деталей.
+
+## 🙏 Благодарности
+
+- **Philadelphia Community** - за вдохновение и поддержку
+- **Open Source Community** - за прекрасные инструменты
+- **Contributors** - за вклад в развитие проекта
 
 ---
 
-## 🤝 Поддержка
+**Built with ❤️ for Philadelphia, PA** 🔔
 
-### 📞 Контакты
-- **Email**: support@ai-assistants-philly.com
-- **GitHub Issues**: Создавайте issues для багов и фич
-
-### 🐛 Сообщение о багах
-Пожалуйста, указывайте:
-- Шаги для воспроизведения
-- Ожидаемое поведение
-- Фактическое поведение
-- Скриншоты (если применимо)
-- Версию браузера и ОС
-
-### 💡 Предложения фич
-Описывайте:
-- Проблему, которую решает фича
-- Как это улучшит UX
-- Альтернативные решения
-
----
-
-## 📜 Лицензия
-
-MIT License - см. файл [LICENSE](LICENSE) для деталей.
-
----
-
-**🎉 Проект готов к использованию! Backend и Frontend полностью функциональны с аутентификацией, базой данных и красивым UI.**
+*Связь Филадельфии с будущим через ИИ-ассистентов*
